@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>代理模式</title>
+</head>
+<body>
+  <script>
+    // 简单的代理模式
+    let flower = function() {}
+    let A = {
+      sendFlower = function(target){
+        let f = new flower()
+        target.receiveFlower( f )
+      }
+    }
+
+    let B = {
+      receiveFlower: function(flower) {
+        C.receiveFlower(flower)
+      }
+    }
+
+    let C = {
+      receiveFlower: function(flower) {
+        console.log('收到花', flower)
+      }
+    }
+
+    // 保护代理
+    // let flower = function() {}
+    // let A = {
+    //   sendFlower = function(target){
+    //     let f = new flower()
+    //     target.receiveFlower( f )
+    //   }
+    // }
+
+    // let B = {
+    //   receiveFlower: function(flower) {
+    //     C.listenGoodMood(function() {
+    //        C.receiveFlower(flower)
+    //     })
+    //   }
+    // }
+
+    // let C = {
+    //   receiveFlower: function(flower) {
+    //     console.log('收到花', flower)
+    //   },
+    //   listenGoodMood: function(fn) {
+    //     setTimeout(() => {
+    //       fn()
+    //     }, 10000)
+    //   }
+    // }
+
+    // 虚拟代理
+    // class MyImage {
+    //   constructor() {
+    //     this.img = new Image()
+    //     document.body.appendChild(this.img)
+    //   }
+    //   setSrc(src) {
+    //     this.img.src = src
+    //   }
+    // }
+
+    // class ProxyImage {
+    //   constructor() {
+    //     this.proxyImage = new Image()
+    //   }
+
+    //   setSrc(src) {
+    //     let myImageObj = new MyImage()
+    //     myImageObj.img.src = 'file://xxx.png'  //为本地图片url
+    //     this.proxyImage.src = src
+    //     this.proxyImage.onload = function() {
+    //       myImageObj.img.src = src
+    //     }
+    //   }
+    // }
+    // var proxyImage = new ProxyImage()
+    // proxyImage.setSrc('http://xxx.png') //服务器资源url
+
+    // 缓存代理
+    // function cached(fn) {
+    //   let cache = Object.create(null)
+    //   return (function cachedFn(str) {
+    //     let hit = cache[str]
+    //     return hit || (cache[str] = fn(str))
+    //   })
+    // }
+
+    // // 横线-的转换成驼峰写法
+    // let camelizeRE = /-(\w)/g;
+    // let camelize = cached(function (str) {
+    //   return str.replace(camelizeRE, function (_, c) {
+    //     return c ? c.toUpperCase() : ''
+    //   })
+    // })
+  </script>
+</body>
+</html>

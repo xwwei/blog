@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>单例模式</title>
+</head>
+<body>
+  <script>
+    // 简单的单例模式
+    let tool = {
+      name: '工具类',
+      sleep: function() {},
+      uuid: function() {}
+    }
+
+    // 惰性单例
+    let inertiaTool = (function() {
+      let _instance = null
+      function init () {
+        this.name = '工具类',
+        this.sleep = () => {
+          //...
+        }
+        this.uuid = () => {
+          // ...
+        }
+        return function() {
+          if (!_instance) {
+            _instance = new init()
+          }
+          return _instance
+        }
+      }
+    })()
+
+    // es6 创建单例模式
+    class es6Tool {
+      constructor(name) {
+        this.name = name
+      }
+
+      static getInstance() {
+        if (!this.instance) {
+          this.instance = new es6Tool(name)
+        }
+        return this.instance
+      }
+
+      sleep() {
+        // ...
+      }
+
+      uuid() {
+        // ...
+      }
+    }
+  </script>
+</body>
+</html>
