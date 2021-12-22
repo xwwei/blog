@@ -192,3 +192,94 @@ let camelize = cached(function (str) {
 迭代器的实现可参考[https://github.com/mqyqingfeng/Blog/issues/40]
 
 ## 5、发布-订阅模式
+发布-订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖它的对象都将得到通知。在JavaScript开发中，我们一般用事件模型来替代传统的发布-订阅模式。Dom事件就是一个发布订阅模式的例子。
+
+一个简单通用的发布-订阅模式
+```
+class Event {
+  handlers = {}
+
+  addEventListener(type, handler) {
+    if (!(type in this.handlers)) {
+      this.handlers[type] = []
+    }
+    this.handlers[type].push(handler)
+  }
+
+  dispatchEvent(type, ...params) {
+    if (!(type in this.handlers)) {
+      return new Error('未注册该事件')
+    }
+    this.handlers[type].forEach(fn => {
+      fn.apply(this, ...params)
+    })
+  }
+
+  removeEvent(type, handler) {
+    if (!(type in this.handlers)) {
+      return new Error('无效事件')
+    }
+    if (!handler) {
+      return delete this.handlers[type]
+    }
+    const idx = this.handlers[type].findIndex(r = r === handler)
+    if (idx === -1) {
+      return new Error('无该绑定事件')
+    }
+    this.handlers[type].splice(idx, 1)
+    if (this.handlers[type].length === 0) {
+      delete this.handlers[type]
+    }
+  }
+}
+```
+
+## 命令模式
+命令模式（Command Pattern）是一种数据驱动的设计模式，它属于行为型模式。请求以命令的形式包裹在对象中，并传给调用对象。调用对象寻找可以处理该命令的合适的对象，并把该命令传给相应的对象，该对象执行命令。命令模式的由来其实是回调函数的一个面向对象的替代品。
+
+在命令的发布者和接收者之间，定义一个命令对象，命令对象暴露出一个统一的接口给命令的发布者，而命令的发布者不用去管接收者是如何执行命令的，做到命令发布者和接收者的解耦。
+
+```
+<button id="btn1"></button>
+<button id="btn2"></button>
+<button id="btn3"></button>
+
+<script>
+  let btn1 = document.getElementById('btn1')
+  let btn2 = document.getElementById('btn2')
+  let btn3 = document.getElementById('btn3')
+
+  // 定义一个命令发布者（执行者）的类
+  class Executor {
+    setCommand(btn, command) {
+      btn.onclick = function() {
+        command.execute()
+      }
+    }
+  }
+
+  // 定义一个命令接受者
+  class Menu {
+    refesh() {
+      console.log('刷新')
+    }
+  }
+
+  // 定义一个刷新菜单的命令对象类
+  class RefreshMenu {
+    constructor(receiver) {
+      this.receiver = receiver
+    }
+
+    execute() {
+      this.receiver.refresh()
+    }
+  }
+
+  let executor = new Executor()
+  let menu = new Menu()
+  let refreshMenu = new RefreshMenu(menu)
+
+  executor.setCommand(btn1, refreshMenu)
+</script>
+```
