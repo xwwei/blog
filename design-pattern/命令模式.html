@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>命令模式</title>
+</head>
+<body>
+  <button id="btn1"></button>
+  <button id="btn2"></button>
+  <button id="btn3"></button>
+
+  <script>
+    let btn1 = document.getElementById('btn1')
+    let btn2 = document.getElementById('btn2')
+    let btn3 = document.getElementById('btn3')
+
+    // 定义一个命令发布者（执行者）的类
+    class Executor {
+      setCommand(btn, command) {
+        btn.onclick = function() {
+          command.execute()
+        }
+      }
+    }
+
+    // 定义一个命令接受者
+    class Menu {
+      refesh() {
+        console.log('刷新')
+      }
+    }
+
+    // 定义一个刷新菜单的命令对象类
+    class RefreshMenu {
+      constructor(receiver) {
+        this.receiver = receiver
+      }
+
+      execute() {
+        this.receiver.refresh()
+      }
+    }
+
+    let executor = new Executor()
+    let menu = new Menu()
+    let refreshMenu = new RefreshMenu(menu)
+
+    executor.setCommand(btn1, refreshMenu)
+  </script>
+</body>
+</html>

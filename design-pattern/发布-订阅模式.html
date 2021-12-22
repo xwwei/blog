@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发布-订阅模式</title>
+</head>
+<body>
+<script>
+  class Event {
+    handlers = {}
+
+    addEventListener(type, handler) {
+      if (!(type in this.handlers)) {
+        this.handlers[type] = []
+      }
+      this.handlers[type].push(handler)
+    }
+
+    dispatchEvent(type, ...params) {
+      if (!(type in this.handlers)) {
+        return new Error('未注册该事件')
+      }
+      this.handlers[type].forEach(fn => {
+        fn.apply(this, ...params)
+      })
+    }
+
+    removeEvent(type, handler) {
+      if (!(type in this.handlers)) {
+        return new Error('无效事件')
+      }
+      if (!handler) {
+        return delete this.handlers[type]
+      }
+      const idx = this.handlers[type].findIndex(r = r === handler)
+      if (idx === -1) {
+        return new Error('无该绑定事件')
+      }
+      this.handlers[type].splice(idx, 1)
+      if (this.handlers[type].length === 0) {
+        delete this.handlers[type]
+      }
+    }
+  }
+</script>
+</body>
+</html>
