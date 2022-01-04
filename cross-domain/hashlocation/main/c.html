@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<p>c</p>
+	<script>
+    // 监听b.html传来的hash值
+    window.onhashchange = function () {
+			console.log(location.hash, window.parent.parent)
+			// 再通过操作同域a.html的js回调，将结果传回
+			window.parent.parent.onCallback('hello: ' + location.hash.replace('#user=', ''));
+    }
+	</script>
+</body>
+</html>

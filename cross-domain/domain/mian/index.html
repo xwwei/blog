@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>html</title>
+</head>
+<body>
+    <div>A页面</div>
+    <iframe
+    style = "display : none"
+    name = "iframe1"
+    id = "iframe"
+    src="http://localhost:9001/index.html" frameborder="0"></iframe>
+    <script type="text/javascript">
+		document.domain = "localhost"
+		let user = 'admin'
+		let iframe = document.getElementById('iframe')
+		iframe.onload = () => {
+			let content = iframe.contentWindow
+			console.log(content.demo)
+		}
+    </script>
+</body>
+</html>

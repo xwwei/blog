@@ -1,0 +1,40 @@
+<html>
+<head>
+	<title></title>
+</head>
+
+<body>
+	<script type="text/javascript">
+
+		let proxy = function(url, callback) {
+			let state = 0
+			let iframe = document.createElement('iframe')
+			// 加载跨域页面
+			iframe.src = url
+			// onload事件会触发2次，第1次加载跨域页，并留存数据于window.name
+			iframe.onload = function() {
+				if (state === 1) {
+					// 第2次onload(同域proxy页)成功后，读取同域window.name中数据
+					callback(iframe.contentWindow.name)
+					destoryFrame()
+
+				} else if (state === 0) {
+					// 第1次onload(跨域页)成功后，切换到同域代理页面
+					iframe.contentWindow.location = 'http://localhost:9000/proxy.html'
+					state = 1
+				}
+			}
+			document.body.appendChild(iframe)
+			function destoryFrame() {
+				iframe.contentWindow.document.write('')
+				iframe.contentWindow.close()
+				document.body.removeChild(iframe)
+			}
+		}
+
+		proxy('http://localhost:9001', function(data){
+			alert(data);
+		})
+	</script>
+</body>
+</html>

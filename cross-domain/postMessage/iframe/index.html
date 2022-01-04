@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	window.addEventListener('message', function(e) {
+        alert('data from nealyang ---> ' + e.data);
+        var data = JSON.parse(e.data);
+        if (data) {
+            data.number = 16;
+
+            // 处理后再发回nealyang
+            window.parent.postMessage(JSON.stringify(data), 'http://localhost:9000');
+        }
+    }, false);
+	</script>
+	
+</body>
+</html>

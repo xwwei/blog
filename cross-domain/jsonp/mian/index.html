@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<script>
+		let script = document.createElement('script');
+		script.src = 'http://localhost:9001/test?demo="demo"&callback=handleCallback';
+		document.body.appendChild(script);
+
+		function handleCallback(res) {
+		  console.log(res);
+		}
+	</script>
+</body>
+</html>

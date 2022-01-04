@@ -1,0 +1,23 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<iframe id="iframe" src="http://localhost:9001/index.html" ></iframe>
+	<script type="text/javascript">
+		let iframe = document.getElementById('iframe')
+		iframe.onload = () =>{
+			let data = {
+				name: 'aym'
+			}
+			
+			iframe.contentWindow.postMessage(JSON.stringify(data), 'http://localhost:9001')
+		}
+		
+		window.addEventListener('message', function(e) {
+			console.log("------------")
+		})
+	</script>
+	
+</body>
+</html>
