@@ -230,6 +230,8 @@ window.addEventListener('message', function(e) {
 }, false);
 ```
 
+### 待补充
+
 参考
 
 [常见跨域解决方案](https://segmentfault.com/a/1190000011145364)
