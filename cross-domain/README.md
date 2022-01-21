@@ -347,7 +347,7 @@ Keep-Alive: timeout=2, max=100
 Connection: Keep-Alive
 Content-Type: text/plain
 ```
-上面的HTTP回应中，关键的是Access-Control-Allow-Origin字段，表示http://xxx.com可以请求数据。该字段也可以设为星号，表示同意任意跨源请求。如果浏览器否定了"预检"请求，会返回一个正常的HTTP回应，但是没有任何CORS相关的头信息字段。这时，浏览器就会认定，服务器不同意预检请求，因此触发一个错误，被XMLHttpRequest对象的onerror回调函数捕获。控制台会打印出如下的报错信息。
+上面的HTTP回应中，关键的是Access-Control-Allow-Origin字段，表示`http://xxx.com`可以请求数据。该字段也可以设为星号，表示同意任意跨源请求。如果浏览器否定了"预检"请求，会返回一个正常的HTTP回应，但是没有任何CORS相关的头信息字段。这时，浏览器就会认定，服务器不同意预检请求，因此触发一个错误，被XMLHttpRequest对象的onerror回调函数捕获。控制台会打印出如下的报错信息。
 - Access-Control-Allow-Methods：该字段必需，它的值是逗号分隔的一个字符串，表明服务器支持的所有跨域请求的方法。注意，返回的是所有支持的方法，而不单是浏览器请求的那个方法。这是为了避免多次"预检"请求。
 - Access-Control-Allow-Headers：如果浏览器请求包括Access-Control-Request-Headers字段，则Access-Control-Allow-Headers字段是必需的。它也是一个逗号分隔的字符串，表明服务器支持的所有头信息字段，不限于浏览器在"预检"中请求的字段。
 - Access-Control-Allow-Credentials： 该字段与简单请求时的含义相同。
