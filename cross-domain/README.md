@@ -201,7 +201,7 @@ if(typeof window.addEventListener != 'undefined'){
 举个例子
 ```javascript
 // a.html
-<iframe id="iframe" src="http://localhost:9001/index.html" ></iframe>
+<iframe id="iframe" src="http://localhost:9001/b.html" ></iframe>
 <script type="text/javascript">
   let iframe = document.getElementById('iframe')
   iframe.onload = () =>{
