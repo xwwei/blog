@@ -6,4 +6,8 @@
 [JavaScript跨域问题](https://github.com/xwwei/blog/blob/main/cross-domain/README.md)
 
 ## 面试
-[面试中关于html的问题](https://github.com/xwwei/blog/blob/main/interview/html.md)
+[关于html的问题](https://github.com/xwwei/blog/blob/main/interview/html.md)
+
+[关于http的问题](https://github.com/xwwei/blog/blob/main/interview/http.md)
+
+[关于浏览器的问题](https://github.com/xwwei/blog/blob/main/interview/browser.md)
