@@ -5,6 +5,9 @@
 
 [JavaScript跨域问题](https://github.com/xwwei/blog/blob/main/cross-domain/README.md)
 
+## 你可能不知道的html
+[svg和canvas的区别](https://github.com/xwwei/blog/blob/main/cross-domain/README.md)
+
 ## 面试
 [关于html的问题](https://github.com/xwwei/blog/blob/main/interview/html.md)
 
