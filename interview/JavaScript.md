@@ -409,3 +409,34 @@ intersectionObserver.observe(
   document.querySelector('.scrollerFooter')
 );
 ```
+
+### 严格和非严格模式this的指向
+
+1、在严格模式和非严格模式下，在全局作用域中，this指向window对象。
+
+2、在严格模式下，函数中的this等于undefined。不是严格模式时，这里的this指向window。
+
+3、在严格模式和非严格模式下，对象的函数中的this指向调用函数的对象实例。
+
+4、在严格模式和非严格模式下，构造函数中的this指向构造函数创建的对象实例。
+
+5、在严格模式和非严格模式下，在事件处理函数中，this指向触发事件的目标对象。
+
+6、内联事件处理函数中的this
+```javascript
+<button onclick="alert((function(){'use strict'; return this})());">
+内联事件处理1
+</button>
+// 警告窗口中的字符为undefined
+
+<button onclick="'use strict'; alert(this.tagName.toLowerCase());">
+内联事件处理2
+</button>
+// 警告窗口中的字符为button
+```
+
+### javascript中数据在栈和堆中的存储方式
+- 栈（stack）：会自动分配内存空间、自动释放，存放简单的数据段，占据固定的空间大小，存放基本数据类型。
+- 基本数据类型：Null、Undefined、Number、Boolean、String
+- 堆（heap）：动态分配内存空间，大小不固定不自动释放，用来存放引用数据类型。
+- 引用数据类型：Object、Function、Array
