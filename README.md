@@ -14,3 +14,8 @@
 [关于http的问题](https://github.com/xwwei/blog/blob/main/interview/http.md)
 
 [关于浏览器的问题](https://github.com/xwwei/blog/blob/main/interview/browser.md)
+
+## 算法
+[flat数组](https://github.com/xwwei/blog/blob/main/algorithm/flat.js)
+[随机乱序数组](https://github.com/xwwei/blog/blob/main/algorithm/randomSort.js)
+[千位分割](https://github.com/xwwei/blog/blob/main/algorithm/numsplit.js)
